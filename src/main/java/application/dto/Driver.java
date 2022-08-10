@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rider extends Person{
+public class Driver extends Person {
 
-
+    private Cab cab;
+    private Availability availability;
 }

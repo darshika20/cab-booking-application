@@ -10,7 +10,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String firstName;
     private String lastName;
@@ -24,12 +24,15 @@ public class Customer {
                 '}';
     }
 
+    public Customer() {
+    }
+
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
