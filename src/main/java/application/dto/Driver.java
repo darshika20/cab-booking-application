@@ -9,8 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Driver extends Person {
+public class Driver {
 
-    private Cab cab;
-    private Availability availability;
+    private String cabId;
+    private boolean available;
+    private String name;
+    private String email;
+    private String password;
+    private String id;
 }

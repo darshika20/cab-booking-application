@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rider extends Person{
+public class Rider{
 
+    private String name;
+    private String email;
+    private String password;
 
 }

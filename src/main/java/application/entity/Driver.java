@@ -1,22 +1,25 @@
-package application.dto;
+package application.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class Person {
+@Entity
+public class Driver {
 
+    @Id
+    private String id;
     private String name;
     private String email;
     private String password;
-    private List<Trip> pastTrips;
-    private String tripId;
-    private String id;
+    private String cabId;
+    private boolean available;
 }
