@@ -15,9 +15,8 @@ import javax.persistence.Id;
 @Entity
 public class Driver {
 
-    @Id
-    private String id;
     private String name;
+    @Id
     private String email;
     private String password;
     private String cabId;

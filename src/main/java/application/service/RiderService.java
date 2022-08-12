@@ -1,9 +1,12 @@
 package application.service;
 
 import application.dto.Rider;
-import application.exception.NotFoundException;
+import application.dto.Trip;
+import application.dto.TripRequest;
 import application.mapper.RiderMapper;
+import application.mapper.TripMapper;
 import application.repository.RiderRepository;
+import application.repository.TripRepository;
 import application.utility.Validation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +17,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class RiderService {
 
     @Autowired
     RiderRepository riderRepository;
+
+    @Autowired
+    DriverService driverService;
+
+    @Autowired
+    TripRepository tripRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(RiderService.class);
 
@@ -54,6 +62,43 @@ public class RiderService {
             throw new RuntimeException("This email Id is not registered in application!");
         } else {
             return RiderMapper.entityToDto(rider.get());
+        }
+    }
+
+    public Trip bookCab(TripRequest tripRequest) {
+
+        //validate trip details
+        boolean validation = validateTrip(tripRequest);
+        boolean riderExists = riderRepository.existsById(tripRequest.getRideremail());
+        if (!validation || !riderExists) {
+            throw new RuntimeException("Trip details validation failed");
+        } else {
+            return driverService.bookCab(tripRequest);
+        }
+    }
+
+    private boolean validateTrip(TripRequest tripRequest) {
+
+        return Validation.notEmptyString(tripRequest.getRideremail()) && !(tripRequest.getSourceXCoordinate() ==
+                tripRequest.getDestXCoordinate() && tripRequest.getSourceYCoordinate() ==
+                tripRequest.getDestYCoordinate());
+    }
+
+    public List<Trip> getAllRides(String email) {
+
+        List<Trip> trips = new ArrayList<>();
+        for (application.entity.Trip trip : tripRepository.findByRiderId(email)) {
+            trips.add(TripMapper.entityToDto(trip));
+        }
+        return trips;
+    }
+
+    public Trip endTrip(String tripId) {
+
+        if (!tripRepository.existsById(tripId)) {
+            throw new RuntimeException("This trip does not exist in the application!");
+        } else {
+            return  driverService.endTrip(tripId);
         }
     }
 }

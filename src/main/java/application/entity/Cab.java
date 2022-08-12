@@ -18,6 +18,6 @@ public class Cab {
 
     @Id
     private String id;
-    private String driverId;
+    private String driverEmail;
     private String locationId;
 }

@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cab {
+public class TripRequest {
 
-    private String id;
-    private String driverEmail;
-    private String locationId;
+    private int sourceXCoordinate;
+    private int sourceYCoordinate;
+    private int destXCoordinate;
+    private int destYCoordinate;
+    private String rideremail;
 }

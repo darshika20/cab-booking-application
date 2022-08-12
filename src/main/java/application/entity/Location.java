@@ -1,22 +1,20 @@
 package application.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Data
+@Entity
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class Location {
 
-    private int xCoordinate;
-    private int yCoordinate;
+    private int x;
+    private int y;
     @Id
     private String id;
 }

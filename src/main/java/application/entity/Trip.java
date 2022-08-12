@@ -1,5 +1,6 @@
 package application.entity;
 
+import application.dto.tripStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Trip {
     private String sourceId;
     private String destinationId;
     private long timeTaken;
-    private boolean active;
+    private tripStatus tripStatus;
     private String riderId;
     private String driverId;
 }

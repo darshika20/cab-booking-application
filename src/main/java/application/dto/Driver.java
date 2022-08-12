@@ -1,5 +1,6 @@
 package application.dto;
 
+import application.Strategy.DriverAllotmentStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +17,4 @@ public class Driver {
     private String name;
     private String email;
     private String password;
-    private String id;
 }

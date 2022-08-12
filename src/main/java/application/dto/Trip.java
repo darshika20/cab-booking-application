@@ -15,7 +15,7 @@ public class Trip {
     private String sourceId;
     private String destinationId;
     private long timeTaken;
-    private boolean active;
+    private tripStatus tripStatus;
     private String riderId;
     private String driverId;
 }
